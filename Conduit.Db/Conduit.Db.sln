@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conduit.Db", "Conduit.Db\Conduit.Db.csproj", "{0C91563E-381A-487D-B142-9E348ACFCF6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conduit.Web", "..\Conduit.Web\Conduit.Web.csproj", "{B5DF687B-3102-46BE-AA59-7ACADE140FA8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C91563E-381A-487D-B142-9E348ACFCF6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C91563E-381A-487D-B142-9E348ACFCF6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C91563E-381A-487D-B142-9E348ACFCF6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C91563E-381A-487D-B142-9E348ACFCF6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5DF687B-3102-46BE-AA59-7ACADE140FA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5DF687B-3102-46BE-AA59-7ACADE140FA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5DF687B-3102-46BE-AA59-7ACADE140FA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5DF687B-3102-46BE-AA59-7ACADE140FA8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02C8A816-1159-4766-BBDD-01162AC6966E}
+	EndGlobalSection
+EndGlobal
