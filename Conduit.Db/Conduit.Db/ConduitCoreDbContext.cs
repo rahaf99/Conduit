@@ -1,9 +1,12 @@
 ﻿using Conduit.Db.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Conduit.Db
 {
-    public class ConduitCoreDbContext :DbContext
+    public class ConduitCoreDbContext : DbContext
     {
         public DbSet<Article> Articles { get; set; }
         public DbSet<User> Users { get; set; }
@@ -17,6 +20,7 @@ namespace Conduit.Db
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Follow>().HasKey(k => new { k.FollowingId, k.FollowerId });
             modelBuilder.Entity<Follow>()
                 .HasOne(f => f.Follower)
