@@ -11,7 +11,7 @@ namespace Conduit.Db.Interfaces
     {
         public void CreateArticle(Article article);
         public Article GetArticleById(int ArticleId);
-        public IEnumerable<Article> GetAllArticles();
+        public IEnumerable<Article> GetAllArticles(int PageNumber, int PageSize);
         public void UpdateArticle(Article article);
         public void DeleteArticle(int ArticleId);
     }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Conduit.Web.Interfaces;
 using Conduit.Web.Models;
+using Conduit.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Conduit.Web.Controllers
@@ -18,34 +19,34 @@ namespace Conduit.Web.Controllers
         }
         
         [HttpGet]
-        public ActionResult<IEnumerable<ArticleDto>> GetAllArticles()
+        public ActionResult<IEnumerable<ArticleDto>> GetAllArticles([FromQuery] ArticleParametersRequest articleParametersDto)
         {
-            var ArticlesFromRepository = _articleService.GetAllArticles();
+            var ArticlesFromRepository = _articleService.GetAllArticles(articleParametersDto);
             return new JsonResult(_mapper.Map<IEnumerable<ArticleDto>>(ArticlesFromRepository));
         }
-        
-         [HttpPost]
-        public ActionResult<ArticleDto> CreateArticle(ArticleDto articleDto)
+
+        [HttpPost]
+        public ActionResult<ArticleDto> CreateArticle([FromBody] ArticleDto articleDto)
         {
-             _articleService.CreateArticle(articleDto);
+            _articleService.CreateArticle(articleDto);
             return articleDto;
         }
 
-        [HttpGet]
+        [HttpGet("{ArticleDtoId}")]
         public ActionResult<ArticleDto> GetArticleById(int ArticleDtoId)
         {
            return _articleService.GetArticleById(ArticleDtoId);
         }
 
         [HttpPut]
-        public ActionResult<ArticleDto> UpdateArticle(ArticleDto articleDto)
+        public ActionResult<ArticleDto> UpdateArticle([FromBody]ArticleDto articleDto)
         {
             _articleService.UpdateArticle(articleDto);
             return articleDto;
         }
 
 
-        [HttpDelete]
+        [HttpDelete("{ArticleDtoId}")]
         public void DeleteArticle(int ArticleDtoId)
         {
             _articleService.DeleteArticle(ArticleDtoId);

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Conduit.Web.Controllers
 {
+    [ApiController]
+    [Route("api/Comments")]
     public class CommentController : Controller
     {
         private readonly ICommentService _commentService;
@@ -18,19 +20,19 @@ namespace Conduit.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult<CommentDto> CreateComment(CommentDto commentDto)
+        public ActionResult<CommentDto> CreateComment([FromBody] CommentDto commentDto)
         {
             _commentService.CreateComment(commentDto);
             return commentDto;
         }
 
-        [HttpGet]
+        [HttpGet("{CommentDtoId}")]
         public ActionResult<CommentDto> GetCommentById(int CommentDtoId)
         {
             return _commentService.GetCommentById(CommentDtoId);
         }
 
-        [HttpDelete]
+        [HttpDelete("{CommentDtoId}")]
         public void DeleteComment(int CommentDtoId)
         {
             _commentService.DeleteComment(CommentDtoId);

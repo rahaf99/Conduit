@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Conduit.Web.Controllers
 {
+    [ApiController]
+    [Route("api/Users")]
     public class UserController : Controller
     {
         private readonly IUserService _userService;
@@ -28,7 +30,7 @@ namespace Conduit.Web.Controllers
             return userDto;
         }
 
-        [HttpGet]
+        [HttpGet("{UserDtoId}")]
         public ActionResult<UserDto> GetUserById(int UserDtoId)
         {
             return _userService.GetUserById(UserDtoId);
@@ -41,15 +43,15 @@ namespace Conduit.Web.Controllers
             return userDto;
         }
 
-        [HttpPost("{FavouriteArticle}")]
-        public ActionResult<FavouriteArticleDto> CreateFavouriteArticle(FavouriteArticleDto favouriteArticleDto)
+        [HttpPost("FavouriteArticle")]
+        public ActionResult<FavouriteArticleDto> CreateFavouriteArticle([FromBody] FavouriteArticleDto favouriteArticleDto)
         {
             _favouriteArticleService.CreateFavouriteArticle(favouriteArticleDto);
             return favouriteArticleDto;
         }
 
-        [HttpPost("{Follower}")]
-        public ActionResult<FollowDto> CreateFollower(FollowDto followDto)
+        [HttpPost("Follower")]
+        public ActionResult<FollowDto> CreateFollower([FromBody] FollowDto followDto)
         {
             _followService.CreateFollower(followDto);
             return followDto;

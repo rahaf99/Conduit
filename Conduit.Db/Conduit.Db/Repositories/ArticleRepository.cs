@@ -39,9 +39,10 @@ namespace Conduit.Db.Repositories
             return a;
         }
 
-        public IEnumerable<Article> GetAllArticles()
+        public IEnumerable<Article> GetAllArticles(int PageNumber, int PageSize)
         {
-            return _context.Articles.ToList();
+            return _context.Articles
+                .Skip((PageNumber - 1) * PageSize).Take(PageSize).ToList();
         }
     }
 }

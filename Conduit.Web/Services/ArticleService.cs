@@ -4,6 +4,7 @@ using Conduit.Db.Entities;
 using Conduit.Db.Interfaces;
 using Conduit.Web.Interfaces;
 using Conduit.Web.Models;
+using Conduit.Web.Requests;
 
 namespace Conduit.Web.Services
 {
@@ -33,9 +34,9 @@ namespace Conduit.Web.Services
             _articleRepository.DeleteArticle(ArticleDtoId);
         }
 
-        public IEnumerable<ArticleDto> GetAllArticles()
+        public IEnumerable<ArticleDto> GetAllArticles(ArticleParametersRequest articleParametersDto)
         {
-            var articles = _articleRepository.GetAllArticles();
+            var articles = _articleRepository.GetAllArticles(articleParametersDto.PageNumber,articleParametersDto.PageSize);
             var response = articles.Select(x => _mapper.Map<ArticleDto>(x));
             return response;
         }
