@@ -4,6 +4,7 @@ using Conduit.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Conduit.Db.Migrations
 {
     [DbContext(typeof(ConduitCoreDbContext))]
-    partial class ConduitCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230130144018_createTableRefreshToken")]
+    partial class createTableRefreshToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,20 +122,6 @@ namespace Conduit.Db.Migrations
 
             modelBuilder.Entity("Conduit.Db.Entities.RefreshToken", b =>
                 {
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("refreshToken")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.ToTable("RefreshTokens");
                 });
 

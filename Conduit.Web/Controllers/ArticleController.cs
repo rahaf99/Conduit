@@ -2,10 +2,12 @@
 using Conduit.Web.Interfaces;
 using Conduit.Web.Models;
 using Conduit.Web.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Conduit.Web.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/Articles")]
     public class ArticleController : Controller
@@ -17,7 +19,11 @@ namespace Conduit.Web.Controllers
             _articleService = articleService ?? throw new ArgumentNullException(nameof(articleService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));    
         }
-        
+
+
+        /*api/Articles?pageNumber=2&pageSize=2*/
+
+      
         [HttpGet]
         public ActionResult<IEnumerable<ArticleDto>> GetAllArticles([FromQuery] ArticleParametersRequest articleParametersDto)
         {

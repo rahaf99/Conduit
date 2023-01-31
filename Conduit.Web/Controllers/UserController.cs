@@ -3,10 +3,12 @@ using Conduit.Db.Entities;
 using Conduit.Web.Interfaces;
 using Conduit.Web.Models;
 using Conduit.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Conduit.Web.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/Users")]
     public class UserController : Controller
@@ -23,6 +25,7 @@ namespace Conduit.Web.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
+        
         [HttpPost]
         public ActionResult<UserDto> CreateUser(UserDto userDto)
         {

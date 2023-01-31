@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Conduit.Db.Entities;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 

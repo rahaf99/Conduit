@@ -10,12 +10,10 @@ namespace Conduit.Web.Services
 {
     public class ArticleService : IArticleService
     {
-        private readonly ConduitCoreDbContext _context;
         private readonly IArticleRepository _articleRepository;
         private readonly IMapper _mapper;
-        public ArticleService(ConduitCoreDbContext context, IArticleRepository articleRepository, IMapper mapper)
+        public ArticleService(IArticleRepository articleRepository, IMapper mapper)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
             _articleRepository = articleRepository;
             _mapper = mapper;
         }
