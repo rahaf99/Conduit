@@ -9,8 +9,7 @@ namespace Conduit.Db.Interfaces
 {
     public interface IAuthenticationRepository
     {
-        public User LogIn(int userId, string password);
-        public string AddTokenToUser(int UserId, string finaltoken);
+        public bool DoesTheUserExist(int userId);
 
     }
 }

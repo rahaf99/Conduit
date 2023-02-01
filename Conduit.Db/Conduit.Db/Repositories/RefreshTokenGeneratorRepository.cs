@@ -1,6 +1,7 @@
 ﻿using Azure.Identity;
 using Conduit.Db.Entities;
 using Conduit.Db.Interfaces;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,10 +50,19 @@ namespace Conduit.Db.Repositories
             }
         }
 
-        public RefreshToken Refresh(int userId, string refreshToken)
+        public RefreshToken TokenExists(int userId, string refreshToken)
         {
             return _context.RefreshTokens.FirstOrDefault(o => o.UserId == userId && o.refreshToken == refreshToken);
         }
-
+        public RefreshToken DeleteToken(int userId)
+        {
+            var refreshToken = _context.RefreshTokens.FirstOrDefault(o => o.UserId == userId);
+            if (refreshToken != null)
+            {
+                _context.RefreshTokens.Remove(refreshToken);
+                _context.SaveChanges();
+            }
+            return refreshToken;
+        }
     }
 }

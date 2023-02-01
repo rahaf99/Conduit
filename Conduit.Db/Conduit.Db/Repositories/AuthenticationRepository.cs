@@ -16,19 +16,10 @@ namespace Conduit.Db.Repositories
         {
             _context = context;
         }
-        public User LogIn(int userId, string password)
+
+        public bool DoesTheUserExist(int userId)
         {
-            return _context.Users.FirstOrDefault(o => o.UserId== userId && o.Password == password);
-        }
-        public string AddTokenToUser(int UserId, string finaltoken)
-        {
-            var _user=_context.Users.FirstOrDefault(o => o.UserId == UserId);
-            if (_user != null)
-            {
-                //_user.Token = finaltoken;
-            }
-            _context.SaveChanges();
-            return finaltoken;
+            return _context.Users.Any(o => o.UserId == userId);
         }
     }
 }

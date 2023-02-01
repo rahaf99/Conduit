@@ -10,7 +10,8 @@ namespace Conduit.Db.Interfaces
     public interface IRefreshTokenGeneratorRepository
     {
         public string GenerateToken(int userId);
-       public RefreshToken Refresh(int userId, string refreshToken);
+        public RefreshToken TokenExists(int userId, string refreshToken);
+        public RefreshToken DeleteToken(int userId);
 
     }
 }

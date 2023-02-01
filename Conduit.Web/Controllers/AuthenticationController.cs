@@ -29,12 +29,12 @@ namespace Conduit.Web.Controllers
            _refreshTokenGeneratorService = refreshTokenGeneratorService;
         }
 
-        [HttpPost]
+        [HttpPost("LogIn")]
         public IActionResult Login([FromBody] usercred usercred)
         {
             TokenResponse tokenResponse = new TokenResponse();
-            var _user = _authenticationService.LogIn(usercred);
-            if (_user == null)
+            var userExist = _authenticationService.DoesTheUserExist(usercred.UserId);
+            if (!userExist)
             {
                 return Unauthorized();
             }
@@ -44,7 +44,7 @@ namespace Conduit.Web.Controllers
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(USERID, _user.UserId.ToString()),
+                    new Claim(USERID, usercred.UserId.ToString()),
                 }
                 ),
                 Expires = DateTime.Now.AddMinutes(2),
@@ -53,7 +53,7 @@ namespace Conduit.Web.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
             string finaltoken = tokenHandler.WriteToken(token);
             tokenResponse.JWTToken = finaltoken;
-            tokenResponse.RefreshToken = _refreshTokenGeneratorService.GenerateToken(_user.UserId);
+            tokenResponse.RefreshToken = _refreshTokenGeneratorService.GenerateToken(usercred.UserId);
             return Ok(tokenResponse);
         }
 
@@ -69,8 +69,6 @@ namespace Conduit.Web.Controllers
                 );
             tokenResponse.JWTToken = new JwtSecurityTokenHandler().WriteToken(tokenhandler);
             tokenResponse.RefreshToken = _refreshTokenGeneratorService.GenerateToken(userId);
-
-
             return tokenResponse;
         }
      
@@ -98,14 +96,14 @@ namespace Conduit.Web.Controllers
             var userIdClaim = principal.Claims.Where(c => c.Type == USERID).FirstOrDefault();
             if (userIdClaim == null)
             {
-                new UnauthorizedAccessException();
+                return Unauthorized();
             }
             var userId = Convert.ToInt32(userIdClaim.Value);
             
 
             //var userId = principal.Identity.Name;
 
-             var _user = _refreshTokenGeneratorService.Refresh(userId, tokenResponse.RefreshToken);
+             var _user = _refreshTokenGeneratorService.TokenExists(userId, tokenResponse.RefreshToken);
              if (_user == null)
              {
                  return Unauthorized();
@@ -114,5 +112,30 @@ namespace Conduit.Web.Controllers
              return Ok(_result);
             
         }
+
+        [HttpPost("LogOut")]
+        public IActionResult Logout()
+        {
+            var userIdClaim = User.Claims.Where(c => c.Type == USERID).FirstOrDefault();
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+            var userId = Convert.ToInt32(userIdClaim.Value);
+
+            var userExist = _authenticationService.DoesTheUserExist(userId);
+            if (!userExist)
+            {
+                return Unauthorized();
+            }
+            var refreshToken = _refreshTokenGeneratorService.DeleteToken(userId);
+            if (refreshToken == null)
+            {
+                return Unauthorized();
+            }
+            return Ok();
+        }
+
+
     }
 }

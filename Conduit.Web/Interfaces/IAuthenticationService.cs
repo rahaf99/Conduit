@@ -5,8 +5,7 @@ namespace Conduit.Web.Interfaces
 {
     public interface IAuthenticationService
     {
-        public UserDto LogIn(usercred usercred);
-        public string AddTokenToUser(int UserId, string finaltoken);
+        public bool DoesTheUserExist(int userId);
 
 
     }

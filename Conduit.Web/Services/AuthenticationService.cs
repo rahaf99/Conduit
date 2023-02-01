@@ -19,15 +19,10 @@ namespace Conduit.Web.Services
             _authenticationRepository = authenticationRepository;
             _mapper = mapper;
         }
-        public UserDto LogIn(usercred usercred)
+        public bool DoesTheUserExist(int userId)
         {
-            var user= _authenticationRepository.LogIn(usercred.UserId,usercred.Password);
-            var response = _mapper.Map<UserDto>(user);
-            return response;
+            return _authenticationRepository.DoesTheUserExist(userId);
         }
-       public string AddTokenToUser(int UserId, string finaltoken)
-        {
-            return _authenticationRepository.AddTokenToUser(UserId,finaltoken);
-        }
+ 
     }
 }

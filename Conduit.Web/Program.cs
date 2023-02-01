@@ -70,6 +70,7 @@ builder.Services.AddAuthentication(options =>
 {
     o.RequireHttpsMetadata = true;
     o.SaveToken = true;
+    
     o.TokenValidationParameters = new TokenValidationParameters()
     {
         ValidateIssuerSigningKey = true,
