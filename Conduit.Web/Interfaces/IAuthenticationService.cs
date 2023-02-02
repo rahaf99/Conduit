@@ -6,6 +6,7 @@ namespace Conduit.Web.Interfaces
     public interface IAuthenticationService
     {
         public bool DoesTheUserExist(int userId);
+        public UserDto GetUser(int userId);
 
 
     }

@@ -23,6 +23,12 @@ namespace Conduit.Web.Services
         {
             return _authenticationRepository.DoesTheUserExist(userId);
         }
- 
+        public UserDto GetUser(int userId)
+        {
+            var user= _authenticationRepository.GetUser(userId);
+            var response = _mapper.Map<UserDto>(user);
+            return response;
+        }
+
     }
 }

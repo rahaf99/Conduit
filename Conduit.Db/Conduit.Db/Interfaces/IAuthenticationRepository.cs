@@ -10,6 +10,7 @@ namespace Conduit.Db.Interfaces
     public interface IAuthenticationRepository
     {
         public bool DoesTheUserExist(int userId);
+        public User GetUser(int userId);
 
     }
 }

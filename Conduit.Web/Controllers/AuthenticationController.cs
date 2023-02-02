@@ -38,6 +38,12 @@ namespace Conduit.Web.Controllers
             {
                 return Unauthorized();
             }
+            var user = _authenticationService.GetUser(usercred.UserId);
+            bool isValidPassword = BCrypt.Net.BCrypt.Verify(usercred.Password, user.Password);
+            if(!isValidPassword)
+            {
+                return Unauthorized();
+            }
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenKey = Encoding.UTF8.GetBytes(setting.securityKey);
             var tokenDescriptor = new SecurityTokenDescriptor

@@ -16,10 +16,13 @@ namespace Conduit.Db.Repositories
         {
             _context = context;
         }
-
         public bool DoesTheUserExist(int userId)
         {
             return _context.Users.Any(o => o.UserId == userId);
+        }
+        public User GetUser(int userId)
+        {
+            return _context.Users.FirstOrDefault(o => o.UserId == userId);
         }
     }
 }

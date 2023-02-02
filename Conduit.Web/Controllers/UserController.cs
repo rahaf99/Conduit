@@ -29,6 +29,10 @@ namespace Conduit.Web.Controllers
         [HttpPost]
         public ActionResult<UserDto> CreateUser(UserDto userDto)
         {
+            if (userDto != null)
+            {
+                userDto.Password=BCrypt.Net.BCrypt.HashPassword(userDto.Password);
+            }
             _userService.CreateUser(userDto);
             return userDto;
         }
