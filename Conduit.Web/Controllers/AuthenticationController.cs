@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using Conduit.Web.Interfaces;
 using Conduit.Web.JWT;
+using Conduit.Web.JWT.Authentication;
+using Conduit.Web.JWT.RefreshTokenGenerator;
 using Conduit.Web.Models;
 using Conduit.Web.Services;
 using Microsoft.AspNetCore.Mvc;

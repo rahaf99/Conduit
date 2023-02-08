@@ -21,6 +21,6 @@ namespace Conduit.Db.Entities
         public DateTime PublishDate { get; set; }
         public DateTime LastUpdate { get; set; }
         public ICollection<Comment> Comments { get; set; }
-        public ICollection<FavouriteArticle> FavoriteArticles { get;set; }
+        public ICollection<FavouriteArticle> FavoriteArticles { get; set; }
     }
 }

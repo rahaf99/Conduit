@@ -19,6 +19,5 @@ namespace Conduit.Db.Entities
         public Article Article { get; set; }
         public string Content { get; set; }
         public DateTime PublishDate { get; set; }
-
     }
 }

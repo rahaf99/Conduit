@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Conduit.Web.Interfaces;
 using Conduit.Web.Models;
 using Conduit.Web.Requests;
+using Conduit.Web.Services.Articles;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,10 +20,6 @@ namespace Conduit.Web.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));    
         }
 
-
-        /*api/Articles?pageNumber=2&pageSize=2*/
-
-      
         [HttpGet]
         public ActionResult<IEnumerable<ArticleDto>> GetAllArticles([FromQuery] ArticleParametersRequest articleParametersDto)
         {

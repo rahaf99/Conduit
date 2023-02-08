@@ -11,6 +11,5 @@ namespace Conduit.Db.Entities
         public int UserId { get; set; }
         public string Token { get; set; }
         public string refreshToken { get; set; }
-        public bool IsActive { get; set; }
     }
 }

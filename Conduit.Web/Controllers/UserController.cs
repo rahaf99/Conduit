@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Conduit.Db.Entities;
-using Conduit.Web.Interfaces;
 using Conduit.Web.Models;
 using Conduit.Web.Services;
+using Conduit.Web.Services.FavouriteArticles;
+using Conduit.Web.Services.Follows;
+using Conduit.Web.Services.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,7 +52,7 @@ namespace Conduit.Web.Controllers
             return userDto;
         }
 
-        [HttpPost("FavouriteArticle")]
+        [HttpPost("FavouriteArticles")]
         public ActionResult<FavouriteArticleDto> CreateFavouriteArticle([FromBody] FavouriteArticleDto favouriteArticleDto)
         {
             _favouriteArticleService.CreateFavouriteArticle(favouriteArticleDto);

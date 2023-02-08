@@ -17,11 +17,8 @@ namespace Conduit.Web.JWT
                 opt => opt.MapFrom(src => $"{src.Token}"))
                 .ForMember(
                 dest => dest.refreshToken,
-                opt => opt.MapFrom(src => $"{src.refreshToken}"))
-                .ForMember(
-                dest => dest.IsActive,
-                opt => opt.MapFrom(src => $"{src.IsActive}"));
-
+                opt => opt.MapFrom(src => $"{src.refreshToken}"));
+       
             CreateMap<RefreshTokenDto, RefreshToken>()
                 .ForMember(
               dest => dest.UserId,
@@ -31,10 +28,8 @@ namespace Conduit.Web.JWT
               opt => opt.MapFrom(src => $"{src.Token}"))
               .ForMember(
               dest => dest.refreshToken,
-              opt => opt.MapFrom(src => $"{src.refreshToken}"))
-              .ForMember(
-              dest => dest.IsActive,
-              opt => opt.MapFrom(src => $"{src.IsActive}"));
+              opt => opt.MapFrom(src => $"{src.refreshToken}"));
+              
         }
     }
 }

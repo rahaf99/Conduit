@@ -20,7 +20,6 @@ namespace Conduit.Db
        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // optionsBuilder.UseSqlServer("Server=DESKTOP-D0JS7AA;Database=ConduitCore;Integrated Security=True;Trusted_Connection=True;Trust Server Certificate=true;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

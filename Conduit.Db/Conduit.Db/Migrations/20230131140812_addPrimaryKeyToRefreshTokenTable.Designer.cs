@@ -25,7 +25,7 @@ namespace Conduit.Db.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Conduit.Db.Entities.Article", b =>
+            modelBuilder.Entity("Conduit.Db.Entities.Articles", b =>
                 {
                     b.Property<int>("ArticleId")
                         .ValueGeneratedOnAdd()
@@ -60,7 +60,7 @@ namespace Conduit.Db.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("Conduit.Db.Entities.Comment", b =>
+            modelBuilder.Entity("Conduit.Db.Entities.Comments", b =>
                 {
                     b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
@@ -90,7 +90,7 @@ namespace Conduit.Db.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("Conduit.Db.Entities.FavouriteArticle", b =>
+            modelBuilder.Entity("Conduit.Db.Entities.FavouriteArticles", b =>
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -105,7 +105,7 @@ namespace Conduit.Db.Migrations
                     b.ToTable("FavouriteArticles");
                 });
 
-            modelBuilder.Entity("Conduit.Db.Entities.Follow", b =>
+            modelBuilder.Entity("Conduit.Db.Entities.Follows", b =>
                 {
                     b.Property<int>("FollowingId")
                         .HasColumnType("int");
@@ -139,7 +139,7 @@ namespace Conduit.Db.Migrations
                     b.ToTable("RefreshTokens");
                 });
 
-            modelBuilder.Entity("Conduit.Db.Entities.User", b =>
+            modelBuilder.Entity("Conduit.Db.Entities.Users", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
@@ -234,64 +234,64 @@ namespace Conduit.Db.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Conduit.Db.Entities.Article", b =>
+            modelBuilder.Entity("Conduit.Db.Entities.Articles", b =>
                 {
-                    b.HasOne("Conduit.Db.Entities.User", "User")
+                    b.HasOne("Conduit.Db.Entities.Users", "Users")
                         .WithMany("Articles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Conduit.Db.Entities.Comment", b =>
+            modelBuilder.Entity("Conduit.Db.Entities.Comments", b =>
                 {
-                    b.HasOne("Conduit.Db.Entities.Article", "Article")
+                    b.HasOne("Conduit.Db.Entities.Articles", "Articles")
                         .WithMany("Comments")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Conduit.Db.Entities.User", "User")
+                    b.HasOne("Conduit.Db.Entities.Users", "Users")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Article");
+                    b.Navigation("Articles");
 
-                    b.Navigation("User");
+                    b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Conduit.Db.Entities.FavouriteArticle", b =>
+            modelBuilder.Entity("Conduit.Db.Entities.FavouriteArticles", b =>
                 {
-                    b.HasOne("Conduit.Db.Entities.Article", "Article")
+                    b.HasOne("Conduit.Db.Entities.Articles", "Articles")
                         .WithMany("FavoriteArticles")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Conduit.Db.Entities.User", "User")
+                    b.HasOne("Conduit.Db.Entities.Users", "Users")
                         .WithMany("FavouriteArticles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Article");
+                    b.Navigation("Articles");
 
-                    b.Navigation("User");
+                    b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Conduit.Db.Entities.Follow", b =>
+            modelBuilder.Entity("Conduit.Db.Entities.Follows", b =>
                 {
-                    b.HasOne("Conduit.Db.Entities.User", "Follower")
+                    b.HasOne("Conduit.Db.Entities.Users", "Follower")
                         .WithMany("Following")
                         .HasForeignKey("FollowerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Conduit.Db.Entities.User", "Following")
+                    b.HasOne("Conduit.Db.Entities.Users", "Following")
                         .WithMany("Follower")
                         .HasForeignKey("FollowingId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -302,14 +302,14 @@ namespace Conduit.Db.Migrations
                     b.Navigation("Following");
                 });
 
-            modelBuilder.Entity("Conduit.Db.Entities.Article", b =>
+            modelBuilder.Entity("Conduit.Db.Entities.Articles", b =>
                 {
                     b.Navigation("Comments");
 
                     b.Navigation("FavoriteArticles");
                 });
 
-            modelBuilder.Entity("Conduit.Db.Entities.User", b =>
+            modelBuilder.Entity("Conduit.Db.Entities.Users", b =>
                 {
                     b.Navigation("Articles");
 
