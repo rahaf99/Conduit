@@ -20,7 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Conduit.Db\Conduit.Contracts\Conduit.Contracts.csproj" />
     <ProjectReference Include="..\Conduit.Db\Conduit.Db\Conduit.Db.csproj" />
+    <ProjectReference Include="..\Conduit.Db\Conduit.Domain\Conduit.Domain.csproj" />
   </ItemGroup>
 
 </Project>
