@@ -1,22 +1,25 @@
 ﻿using AutoMapper;
 using Conduit.Db;
-using Conduit.Web.Models;
 using Conduit.Db.Repositories.Follows;
 using Conduit.Db.Entities;
+using Conduit.Contracts.DTO;
 
-namespace Conduit.Web.Services.Follows
+namespace Conduit.Domain.Services.Follows
 {
     public class FollowService : IFollowService
     {
-        private readonly ConduitCoreDbContext _context;
         private readonly IFollowRepository _followRepository;
         private readonly IMapper _mapper;
-        public FollowService(ConduitCoreDbContext context, IFollowRepository followRepository, IMapper mapper)
+        public FollowService(IFollowRepository followRepository, IMapper mapper)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
-            _followRepository = followRepository;
+            _followRepository = followRepository ?? throw new ArgumentNullException(nameof(followRepository));
             _mapper = mapper;
         }
+
+        /// <summary>
+        /// Create follower
+        /// </summary>
+        /// <param name="followDto"></param>
         public void CreateFollower(FollowDto followDto)
         {
             var follow = _mapper.Map<Follow>(followDto);

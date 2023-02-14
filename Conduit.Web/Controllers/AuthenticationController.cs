@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Conduit.Web.JWT;
-using Conduit.Web.JWT.Authentication;
-using Conduit.Web.JWT.RefreshTokenGenerator;
-using Conduit.Web.Models;
-using Conduit.Web.Services;
+using Conduit.Contracts.DTO;
+using Conduit.Contracts.JWT;
+using Conduit.Contracts.JWT.Authentication;
+using Conduit.Contracts.JWT.RefreshTokenGenerator;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.IIS.Core;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -14,7 +14,6 @@ using System.Text;
 
 namespace Conduit.Web.Controllers
 {
-
     [ApiController]
     [Route("Authenticate")]
     public class AuthenticationController : Controller
@@ -22,7 +21,7 @@ namespace Conduit.Web.Controllers
         private readonly JWTSetting setting;
         private readonly IAuthenticationService _authenticationService;
         private readonly IRefreshTokenGeneratorService _refreshTokenGeneratorService;
-        private const string USERID = "UserId";
+        private const string USERID = "PostedBy";
         public AuthenticationController(IOptions<JWTSetting> options, IAuthenticationService authenticationService, IRefreshTokenGeneratorService refreshTokenGeneratorService)
         {
            setting = options.Value;
@@ -33,13 +32,17 @@ namespace Conduit.Web.Controllers
         [HttpPost("LogIn")]
         public IActionResult Login([FromBody] usercred usercred)
         {
-            TokenResponse tokenResponse = new TokenResponse();
-            var userExist = _authenticationService.DoesTheUserExist(usercred.UserId);
+            if (usercred == null || usercred.UserId == 0)
+            {
+                throw new ArgumentNullException(nameof(usercred));
+            }
+            var userExist = _authenticationService.DoesUserExist(usercred.UserId);
             if (!userExist)
             {
                 return Unauthorized();
             }
-            var user = _authenticationService.GetUser(usercred.UserId);
+            TokenResponse tokenResponse = new TokenResponse();
+            var user = _authenticationService.GetUserById(usercred.UserId);
             bool isValidPassword = BCrypt.Net.BCrypt.Verify(usercred.Password, user.Password);
             if(!isValidPassword)
             {
@@ -92,32 +95,24 @@ namespace Conduit.Web.Controllers
                 ValidateIssuer = false,
                 ValidateAudience = false
             }, out securityToken);
-
             var _token = securityToken as JwtSecurityToken;
-
             if (_token != null && !_token.Header.Alg.Equals(SecurityAlgorithms.HmacSha256))
             {
                 return Unauthorized();
             }
-
             var userIdClaim = principal.Claims.Where(c => c.Type == USERID).FirstOrDefault();
             if (userIdClaim == null)
             {
                 return Unauthorized();
             }
             var userId = Convert.ToInt32(userIdClaim.Value);
-            
-
-            //var userId = principal.Identity.Name;
-
-             var _user = _refreshTokenGeneratorService.TokenExists(userId, tokenResponse.RefreshToken);
+            var _user = _refreshTokenGeneratorService.TokenExists(userId, tokenResponse.RefreshToken);
              if (_user == null)
              {
                  return Unauthorized();
              }
              TokenResponse _result = Authenticate(userId, principal.Claims.ToArray());
              return Ok(_result);
-            
         }
 
         [HttpPost("LogOut")]
@@ -130,7 +125,7 @@ namespace Conduit.Web.Controllers
             }
             var userId = Convert.ToInt32(userIdClaim.Value);
 
-            var userExist = _authenticationService.DoesTheUserExist(userId);
+            var userExist = _authenticationService.DoesUserExist(userId);
             if (!userExist)
             {
                 return Unauthorized();

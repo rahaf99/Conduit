@@ -1,12 +1,11 @@
-﻿using Conduit.Web.JWT;
-using Conduit.Web.Models;
+﻿using Conduit.Contracts.DTO;
 
-namespace Conduit.Web.JWT.Authentication
+namespace Conduit.Contracts.JWT.Authentication
 {
     public interface IAuthenticationService
     {
-        public bool DoesTheUserExist(int userId);
-        public UserDto GetUser(int userId);
+        public bool DoesUserExist(int userId);
+        public UserDto GetUserById(int userId);
 
 
     }

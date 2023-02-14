@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using Conduit.Contracts.DTO;
 using Conduit.Db.Entities;
-using Conduit.Web.Models;
 
-namespace Conduit.Web.Profiles
+namespace Conduit.Domain.Profiles
 {
     public class CommentProfile : Profile
     {
@@ -13,7 +13,7 @@ namespace Conduit.Web.Profiles
                 dest => dest.CommentId,
                 opt => opt.MapFrom(src => $"{src.CommentId}"))
                 .ForMember(
-                dest => dest.UserId,
+                dest => dest.PostedBy,
                 opt => opt.MapFrom(src => $"{src.UserId}"))
                 .ForMember(
                 dest => dest.ArticleId,
@@ -31,7 +31,7 @@ namespace Conduit.Web.Profiles
                 opt => opt.MapFrom(src => $"{src.CommentId}"))
                 .ForMember(
                 dest => dest.UserId,
-                opt => opt.MapFrom(src => $"{src.UserId}"))
+                opt => opt.MapFrom(src => $"{src.PostedBy}"))
                 .ForMember(
                 dest => dest.ArticleId,
                 opt => opt.MapFrom(src => $"{src.ArticleId}"))

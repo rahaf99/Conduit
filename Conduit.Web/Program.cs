@@ -1,22 +1,21 @@
 using AutoMapper;
+using Conduit.Contracts.JWT;
+using Conduit.Contracts.JWT.Authentication;
+using Conduit.Contracts.JWT.RefreshTokenGenerator;
 using Conduit.Db;
-using Conduit.Db.AuthenticationAndRefresh.Authentication;
-using Conduit.Db.AuthenticationAndRefresh.RefreshTokenGenerator;
+using Conduit.Db.Authentication.Authentication;
+using Conduit.Db.Authentication.RefreshTokenGenerator;
 using Conduit.Db.Entities;
 using Conduit.Db.Repositories.Articles;
 using Conduit.Db.Repositories.Comments;
 using Conduit.Db.Repositories.FavouriteArticles;
 using Conduit.Db.Repositories.Follows;
 using Conduit.Db.Repositories.Users;
-using Conduit.Web.JWT;
-using Conduit.Web.JWT.Authentication;
-using Conduit.Web.JWT.RefreshTokenGenerator;
-using Conduit.Web.Models;
-using Conduit.Web.Services.Articles;
-using Conduit.Web.Services.Comments;
-using Conduit.Web.Services.FavouriteArticles;
-using Conduit.Web.Services.Follows;
-using Conduit.Web.Services.Users;
+using Conduit.Domain.Services.Articles;
+using Conduit.Domain.Services.Comments;
+using Conduit.Domain.Services.FavouriteArticles;
+using Conduit.Domain.Services.Follows;
+using Conduit.Domain.Services.Users;
 using FluentAssertions.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -80,13 +79,13 @@ builder.Services.AddAuthentication(options =>
 {
     o.RequireHttpsMetadata = true;
     o.SaveToken = true;
-    
     o.TokenValidationParameters = new TokenValidationParameters()
     {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authkey)),
         ValidateIssuer = false,
-        ValidateAudience = false,        
+        ValidateAudience = false,  
+        ClockSkew = TimeSpan.Zero,
     };
 });
 

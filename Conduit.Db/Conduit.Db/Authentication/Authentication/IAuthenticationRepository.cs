@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Conduit.Db.AuthenticationAndRefresh.Authentication
+namespace Conduit.Db.Authentication.Authentication
 {
     public interface IAuthenticationRepository
     {
         public bool DoesUserExist(int userId);
-        public User GetUser(int userId);
+        public User GetUserById(int userId);
 
     }
 }

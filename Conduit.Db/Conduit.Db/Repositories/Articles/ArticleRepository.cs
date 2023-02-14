@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Conduit.Db.Repositories.Articles
-
 {
     public class ArticleRepository : BaseRepository<Article>, IArticleRepository
     {
@@ -23,7 +22,5 @@ namespace Conduit.Db.Repositories.Articles
             return _context.Articles
                 .Skip((PageNumber - 1) * PageSize).Take(PageSize).ToList();
         }
-
-    
     }
 }

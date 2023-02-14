@@ -1,6 +1,6 @@
-﻿using Conduit.Web.Models;
+﻿using Conduit.Contracts.DTO;
 
-namespace Conduit.Web.Services.Follows
+namespace Conduit.Domain.Services.Follows
 {
     public interface IFollowService
     {

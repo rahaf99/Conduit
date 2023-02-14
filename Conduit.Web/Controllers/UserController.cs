@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using Conduit.Contracts.DTO;
 using Conduit.Db.Entities;
-using Conduit.Web.Models;
-using Conduit.Web.Services;
-using Conduit.Web.Services.FavouriteArticles;
-using Conduit.Web.Services.Follows;
-using Conduit.Web.Services.Users;
+using Conduit.Domain.Services.FavouriteArticles;
+using Conduit.Domain.Services.Follows;
+using Conduit.Domain.Services.Users;
+using Conduit.Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,10 +1,8 @@
-﻿namespace Conduit.Web.JWT
+﻿namespace Conduit.Contracts.JWT
 {
     public class RefreshTokenDto
     {
         public int UserId { get; set; }
-        public string Token { get; set; }
-        public string refreshToken { get; set; }
-        public bool IsActive { get; set; }
+        public string RefreshedToken { get; set; }
     }
 }

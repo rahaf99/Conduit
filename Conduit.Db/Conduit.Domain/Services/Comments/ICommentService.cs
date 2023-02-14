@@ -1,7 +1,7 @@
-﻿using Conduit.Db.Entities;
-using Conduit.Web.Models;
+﻿using Conduit.Contracts.DTO;
+using Conduit.Db.Entities;
 
-namespace Conduit.Web.Services.Comments
+namespace Conduit.Domain.Services.Comments
 {
     public interface ICommentService
     {

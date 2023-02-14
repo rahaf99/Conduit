@@ -1,6 +1,6 @@
 ﻿using Conduit.Db.Entities;
 
-namespace Conduit.Web.Models
+namespace Conduit.Contracts.DTO
 {
     public class UserDto
     {

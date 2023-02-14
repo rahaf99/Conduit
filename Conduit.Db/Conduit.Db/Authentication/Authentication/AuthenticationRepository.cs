@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Conduit.Db.AuthenticationAndRefresh.Authentication
+namespace Conduit.Db.Authentication.Authentication
 {
     public class AuthenticationRepository : IAuthenticationRepository
     {
@@ -19,7 +19,7 @@ namespace Conduit.Db.AuthenticationAndRefresh.Authentication
         {
             return _context.Users.Any(o => o.UserId == userId);
         }
-        public User GetUser(int userId)
+        public User GetUserById(int userId)
         {
             return _context.Users.FirstOrDefault(o => o.UserId == userId);
         }

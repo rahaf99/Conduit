@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using Conduit.Contracts.DTO;
 using Conduit.Db.Entities;
-using Conduit.Web.Models;
 
-namespace Conduit.Web.Profiles
+namespace Conduit.Domain.Profiles
 {
     public class FollowProfile : Profile
     {

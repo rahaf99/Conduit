@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using Conduit.Contracts.DTO;
 using Conduit.Db.Entities;
-using Conduit.Web.Models;
 
-namespace Conduit.Web.Profiles
+namespace Conduit.Domain.Profiles
 {
     public class ArticleProfile : Profile
     {
@@ -19,7 +19,7 @@ namespace Conduit.Web.Profiles
                 dest => dest.Content,
                 opt => opt.MapFrom(src => $"{src.Content}"))
                 .ForMember(
-                dest => dest.UserId,
+                dest => dest.AuthorId,
                 opt => opt.MapFrom(src => $"{src.UserId}"))
                 .ForMember(
                 dest => dest.NumberOfLikes,
@@ -31,7 +31,7 @@ namespace Conduit.Web.Profiles
                 dest => dest.LastUpdate,
                 opt => opt.MapFrom(src => $"{src.LastUpdate}"));
 
-            CreateMap<ArticleDto,Article>()
+            CreateMap<ArticleDto, Article>()
                  .ForMember(
                dest => dest.ArticleId,
                opt => opt.MapFrom(src => $"{src.ArticleId}"))
@@ -43,7 +43,7 @@ namespace Conduit.Web.Profiles
                opt => opt.MapFrom(src => $"{src.Content}"))
                .ForMember(
                dest => dest.UserId,
-               opt => opt.MapFrom(src => $"{src.UserId}"))
+               opt => opt.MapFrom(src => $"{src.AuthorId}"))
                .ForMember(
                dest => dest.NumberOfLikes,
                opt => opt.MapFrom(src => $"{src.NumberOfLikes}"))

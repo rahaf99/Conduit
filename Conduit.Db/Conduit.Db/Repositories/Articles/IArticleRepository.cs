@@ -11,6 +11,5 @@ namespace Conduit.Db.Repositories.Articles
     public interface IArticleRepository : IBaseRepository<Article>
     {
         public IEnumerable<Entities.Article> GetAllArticles(int PageNumber, int PageSize);
-
     }
 }

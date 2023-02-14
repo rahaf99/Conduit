@@ -1,7 +1,6 @@
 ﻿using Conduit.Db.Entities;
-using Conduit.Web.JWT;
 
-namespace Conduit.Web.JWT.RefreshTokenGenerator
+namespace Conduit.Contracts.JWT.RefreshTokenGenerator
 {
     public interface IRefreshTokenGeneratorService
     {

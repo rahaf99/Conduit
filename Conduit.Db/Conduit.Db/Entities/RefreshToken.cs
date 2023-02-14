@@ -9,7 +9,6 @@ namespace Conduit.Db.Entities
     public class RefreshToken
     {
         public int UserId { get; set; }
-        public string Token { get; set; }
-        public string refreshToken { get; set; }
+        public string RefreshedToken { get; set; }
     }
 }

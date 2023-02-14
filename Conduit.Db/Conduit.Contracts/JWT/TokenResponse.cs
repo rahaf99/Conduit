@@ -1,4 +1,4 @@
-﻿namespace Conduit.Web.JWT
+﻿namespace Conduit.Contracts.JWT
 {
     public class TokenResponse
     {

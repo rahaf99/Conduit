@@ -14,6 +14,8 @@ namespace Conduit.Db.Repositories.Base
         void Update(T obj);
         void Delete(object id);
         void Save();
+        bool IsExist(object id);
+
     }
 }
 

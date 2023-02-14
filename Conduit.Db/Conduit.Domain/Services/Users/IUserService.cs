@@ -1,7 +1,7 @@
-﻿using Conduit.Db.Entities;
-using Conduit.Web.Models;
+﻿using Conduit.Contracts.DTO;
+using Conduit.Db.Entities;
 
-namespace Conduit.Web.Services.Users
+namespace Conduit.Domain.Services.Users
 {
     public interface IUserService
     {

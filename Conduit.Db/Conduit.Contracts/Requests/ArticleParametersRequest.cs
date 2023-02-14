@@ -1,4 +1,4 @@
-﻿namespace Conduit.Web.Requests
+﻿namespace Conduit.Contracts.Requests
 {
     public class ArticleParametersRequest
     {

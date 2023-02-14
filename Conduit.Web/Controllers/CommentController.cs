@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using Conduit.Contracts.DTO;
 using Conduit.Db.Entities;
-using Conduit.Web.Models;
-using Conduit.Web.Services;
-using Conduit.Web.Services.Comments;
+using Conduit.Domain.Services.Comments;
+using Conduit.Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

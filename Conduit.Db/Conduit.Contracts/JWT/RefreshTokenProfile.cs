@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using Conduit.Db.Entities;
-using Conduit.Web.Models;
 
-namespace Conduit.Web.JWT
+namespace Conduit.Contracts.JWT
 {
     public class RefreshTokenProfile : Profile
     {
@@ -13,23 +12,17 @@ namespace Conduit.Web.JWT
                 dest => dest.UserId,
                 opt => opt.MapFrom(src => $"{src.UserId}"))
                 .ForMember(
-                dest => dest.Token,
-                opt => opt.MapFrom(src => $"{src.Token}"))
-                .ForMember(
-                dest => dest.refreshToken,
-                opt => opt.MapFrom(src => $"{src.refreshToken}"));
-       
+                dest => dest.RefreshedToken,
+                opt => opt.MapFrom(src => $"{src.RefreshedToken}"));
+
             CreateMap<RefreshTokenDto, RefreshToken>()
                 .ForMember(
               dest => dest.UserId,
               opt => opt.MapFrom(src => $"{src.UserId}"))
               .ForMember(
-              dest => dest.Token,
-              opt => opt.MapFrom(src => $"{src.Token}"))
-              .ForMember(
-              dest => dest.refreshToken,
-              opt => opt.MapFrom(src => $"{src.refreshToken}"));
-              
+              dest => dest.RefreshedToken,
+              opt => opt.MapFrom(src => $"{src.RefreshedToken}"));
+
         }
     }
 }

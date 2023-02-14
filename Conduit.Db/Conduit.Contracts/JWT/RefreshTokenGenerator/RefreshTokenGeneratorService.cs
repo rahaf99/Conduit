@@ -4,10 +4,10 @@ using System.Security.Cryptography;
 using Conduit.Db.Repositories;
 using Conduit.Db.Entities;
 using Microsoft.EntityFrameworkCore;
-using Conduit.Db.AuthenticationAndRefresh.RefreshTokenGenerator;
-using Conduit.Web.JWT;
+using Conduit.Contracts.JWT;
+using Conduit.Db.Authentication.RefreshTokenGenerator;
 
-namespace Conduit.Web.JWT.RefreshTokenGenerator
+namespace Conduit.Contracts.JWT.RefreshTokenGenerator
 {
     public class RefreshTokenGeneratorService : IRefreshTokenGeneratorService
     {
@@ -22,7 +22,6 @@ namespace Conduit.Web.JWT.RefreshTokenGenerator
         public string GenerateToken(int userId)
         {
             return _refreshTokenGeneratorRepository.GenerateToken(userId);
-
         }
 
         public RefreshTokenDto TokenExists(int userId, string refreshToken)

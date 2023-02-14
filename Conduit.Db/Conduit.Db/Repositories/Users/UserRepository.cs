@@ -10,10 +10,6 @@ namespace Conduit.Db.Repositories.Users
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        private readonly ConduitCoreDbContext _context;
-        public UserRepository(ConduitCoreDbContext context) : base(context)
-        {
-            _context = context;
-        }
+        public UserRepository(ConduitCoreDbContext context) : base(context) { }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
+using Conduit.Contracts.DTO;
 using Conduit.Db.Entities;
-using Conduit.Web.JWT;
-using Conduit.Web.Models;
 
-namespace Conduit.Web.Profiles
+namespace Conduit.Domain.Profiles
 {
     public class UserProfile : Profile
     {
@@ -26,7 +25,7 @@ namespace Conduit.Web.Profiles
                 dest => dest.Password,
                 opt => opt.MapFrom(src => $"{src.Password}"));
 
-            CreateMap<UserDto,User>()
+            CreateMap<UserDto, User>()
                 .ForMember(
                dest => dest.UserId,
                opt => opt.MapFrom(src => $"{src.UserId}"))
@@ -51,15 +50,13 @@ namespace Conduit.Web.Profiles
                dest => dest.Password,
                opt => opt.MapFrom(src => $"{src.Password}"));
 
-            CreateMap<usercred,User>()
+            CreateMap<usercred, User>()
              .ForMember(
             dest => dest.UserId,
             opt => opt.MapFrom(src => $"{src.UserId}"))
             .ForMember(
             dest => dest.Password,
             opt => opt.MapFrom(src => $"{src.Password}"));
-
-
         }
     }
 }

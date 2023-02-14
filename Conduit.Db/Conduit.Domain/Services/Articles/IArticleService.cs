@@ -1,8 +1,8 @@
-﻿using Conduit.Db.Entities;
-using Conduit.Web.Models;
-using Conduit.Web.Requests;
+﻿using Conduit.Contracts.DTO;
+using Conduit.Contracts.Requests;
+using Conduit.Db.Entities;
 
-namespace Conduit.Web.Services.Articles
+namespace Conduit.Domain.Services.Articles
 {
     public interface IArticleService
     {

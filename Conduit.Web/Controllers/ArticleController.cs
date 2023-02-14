@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Conduit.Web.Models;
-using Conduit.Web.Requests;
-using Conduit.Web.Services.Articles;
+using Conduit.Contracts.DTO;
+using Conduit.Contracts.Requests;
+using Conduit.Domain.Services.Articles;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

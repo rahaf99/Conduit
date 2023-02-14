@@ -1,7 +1,7 @@
-﻿using Conduit.Db.Entities;
-using Conduit.Web.Models;
+﻿using Conduit.Contracts.DTO;
+using Conduit.Db.Entities;
 
-namespace Conduit.Web.Services.FavouriteArticles
+namespace Conduit.Domain.Services.FavouriteArticles
 {
     public interface IFavouriteArticleService
     {

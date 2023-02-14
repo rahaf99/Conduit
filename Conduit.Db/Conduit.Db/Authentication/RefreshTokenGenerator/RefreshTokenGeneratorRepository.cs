@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Conduit.Db.AuthenticationAndRefresh.RefreshTokenGenerator
+namespace Conduit.Db.Authentication.RefreshTokenGenerator
 {
     public class RefreshTokenGeneratorRepository : IRefreshTokenGeneratorRepository
     {
@@ -17,6 +17,7 @@ namespace Conduit.Db.AuthenticationAndRefresh.RefreshTokenGenerator
         {
             _context = context;
         }
+
         public string GenerateToken(int userId)
         {
             var randomnumber = new byte[32];
@@ -24,11 +25,10 @@ namespace Conduit.Db.AuthenticationAndRefresh.RefreshTokenGenerator
             {
                 randomnumbergenerator.GetBytes(randomnumber);
                 string RefreshToken = Convert.ToBase64String(randomnumber);
-
                 var _user = _context.RefreshTokens.FirstOrDefault(o => o.UserId == userId);
                 if (_user != null)
                 {
-                    _user.refreshToken = RefreshToken;
+                    _user.RefreshedToken = RefreshToken;
                     _context.SaveChanges();
                 }
                 else
@@ -36,8 +36,8 @@ namespace Conduit.Db.AuthenticationAndRefresh.RefreshTokenGenerator
                     RefreshToken refreshToken = new RefreshToken()
                     {
                         UserId = userId,
-                        Token = new Random().Next().ToString(),
-                        refreshToken = RefreshToken
+                       // Token = new Random().Next().ToString(),
+                        RefreshedToken = RefreshToken
                     };
                     _context.RefreshTokens.Add(refreshToken);
                     _context.SaveChanges();
@@ -48,7 +48,7 @@ namespace Conduit.Db.AuthenticationAndRefresh.RefreshTokenGenerator
 
         public RefreshToken TokenExists(int userId, string refreshToken)
         {
-            return _context.RefreshTokens.FirstOrDefault(o => o.UserId == userId && o.refreshToken == refreshToken);
+            return _context.RefreshTokens.FirstOrDefault(o => o.UserId == userId && o.RefreshedToken == refreshToken);
         }
         public RefreshToken DeleteToken(int userId)
         {
